@@ -1,0 +1,40 @@
+logging:
+  config: config/logback.xml
+
+server:
+  port: 8888
+  ssl:
+    # keytool -genkeypair -alias springconfigserver -keyalg RSA -keysize 4096 -storetype PKCS12 -keystore spring-config-server.p12 -keypass <pass> -storepass <pass> -validity 3650 -dname "CN=Spring Config Server,OU=Aaron,O=Aaron,L=Singapore,ST=Singapore,C=PH" -ext SAN=dns:localhost,ip:127.0.0.1
+    # keytool -export -alias springconfigserver -file spring-config-server.crt -keystore spring-config-server.p12 -storepass <pass>
+    # keytool -exportcert -alias springconfigserver -storetype PKCS12 -keystore spring-config-server.p12 -file spring-config-server.cer -rfc -storepass <pass>
+    # keytool -import -alias vocabularyapi -file vocabulary-api.crt -keystore spring-config-server.p12 -storepass <pass>
+    # keytool -importkeystore -srckeystore spring-config-server.p12 -srcstoretype pkcs12 -srcalias springconfigserver -srcstorepass <pass> -destkeystore spring-config-server.jks -deststoretype jks -deststorepass john123 -destalias springconfigserver
+    enabled: true
+    #client-auth: need
+    key-alias: springconfigserver
+    key-store: config/keystore/spring-config-server.p12
+    key-store-type: PKCS12
+    #key-password: 
+    key-store-password: ENC(WxLUmL+yI3IsejD5pTRxrdE+4/lO648KgUaopb5RQSx4fWa1i31Hrsa2u+kYQIA5)
+    #trust-store: config/keystore/spring-config-server.p12
+    #trust-store-password: 
+    #trust-store-type: PKCS12
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: ENC(nKyxf1ufcIP3Ngb6V/i+DK1PxZVzteRZbwwwgUTepBFk0vOon6yQYayO8BAB+osaXQWXA/4QG75Lr2d0hY3U9+WFJrM02qT+99zfUrVzpMzgXROaNCylEqx3dFGTm3vu)
+          default-label: develop
+          searchPaths: 
+           - vocabulary-api
+           - recipe-api
+          clone-on-start: true
+          force-pull: true
+          strictHostKeyChecking: false
+          # Get from ~/.ssh/known_hosts
+          #hostKey: xxx
+          #hostKeyAlgorithm: ssh-rsa
+          ignore-local-ssh-settings: true
+          # https://stackoverflow.com/questions/47024826/spring-cloud-config-server-using-ssh-key-for-git-and-running-in-docker
+          private-key: ${SSH_KEY}
