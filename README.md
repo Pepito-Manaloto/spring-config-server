@@ -2,6 +2,6 @@
 Spring Cloud Config Server
 
 #### Sample
-http://localhost:8888/vocabulary-api/default
-http://localhost:8888/database-mariadb/dev
-http://localhost:8888/database-mariadb/prod
+- https://localhost:8888/application/dev
+- https://localhost:8888/vocabulary-api/default/develop/resourcebundle/messages_en.properties
+- https://localhost:8888/vocabulary-api/default/develop/logback.xml

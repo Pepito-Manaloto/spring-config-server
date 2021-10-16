@@ -1,6 +1,6 @@
 package com.aaron.springconfigserver;
 
-import java.io.IOException;
+import static java.util.Objects.nonNull;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,16 +10,15 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @SpringBootApplication
 public class SpringConfigServerApplication
 {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
-        if(args.length >= 1)
+        if(nonNull(System.getProperty("jasypt.encryptor.password")))
         {
-            System.setProperty("jasypt.encryptor.password", args[0]);
             SpringApplication.run(SpringConfigServerApplication.class, args);
         }
         else
         {
-            System.err.println("Jasypt password required as java args[0]");
+            System.err.println("jasypt.encryptor.password must be set");
         }
     }
 }

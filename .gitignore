@@ -33,4 +33,5 @@ build/
 .vscode/
 
 /logs
-/config/privatekey
+privatekey
+jasypt_password
