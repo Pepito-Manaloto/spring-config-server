@@ -11,6 +11,10 @@ RUN java -Djarmode=layertools -jar application.jar extract
 FROM adoptopenjdk/openjdk11:alpine-jre
 ARG APP_DIR
 WORKDIR ${APP_DIR}
+RUN mkdir ${APP_DIR}/logs
+RUN addgroup -S AaronGroup && adduser -S Aaron -G AaronGroup
+RUN chown -R Aaron:AaronGroup ${APP_DIR}
+USER Aaron
 COPY --from=builder ${APP_DIR}/config/ ./config
 COPY --from=builder ${APP_DIR}/dependencies/ ./
 COPY --from=builder ${APP_DIR}/snapshot-dependencies/ ./
