@@ -10,8 +10,8 @@ then
     default_label="develop";
 fi
 
-jasypt=$(cat jasypt_password);
-pem=$(cat privatekey);
+jasypt=$(cat ./env/jasypt_password);
+pem=$(cat ./env/privatekey);
 
 echo "Stopping container ${APP_NAME}";
 docker stop ${APP_NAME} > /dev/null 2>&1;

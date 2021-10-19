@@ -9,6 +9,7 @@ COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
 FROM adoptopenjdk/openjdk11:alpine-jre
+LABEL maintainer="aaronjohn.asuncion@gmail.com"
 ARG APP_DIR
 WORKDIR ${APP_DIR}
 RUN mkdir ${APP_DIR}/logs
