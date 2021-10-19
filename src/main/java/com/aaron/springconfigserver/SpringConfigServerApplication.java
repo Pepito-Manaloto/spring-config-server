@@ -10,15 +10,17 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @SpringBootApplication
 public class SpringConfigServerApplication
 {
+    private static final String JASYPT_PASSWORD_PROPERTY = "jasypt.encryptor.password";
+
     public static void main(String[] args)
     {
-        if(nonNull(System.getProperty("jasypt.encryptor.password")))
+        if(nonNull(System.getProperty(JASYPT_PASSWORD_PROPERTY)))
         {
             SpringApplication.run(SpringConfigServerApplication.class, args);
         }
         else
         {
-            System.err.println("jasypt.encryptor.password must be set");
+            System.err.println(JASYPT_PASSWORD_PROPERTY + " must be set"); //NOSONAR
         }
     }
 }

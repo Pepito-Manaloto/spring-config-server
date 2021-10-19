@@ -4,11 +4,6 @@ logging:
 server:
   port: 8888
   ssl:
-    # keytool -genkeypair -alias springconfigserver -keyalg RSA -keysize 4096 -storetype PKCS12 -keystore spring-config-server.p12 -keypass <pass> -storepass <pass> -validity 3650 -dname "CN=Spring Config Server,OU=Aaron,O=Aaron,L=Singapore,ST=Singapore,C=PH" -ext SAN=dns:localhost,ip:127.0.0.1
-    # keytool -export -alias springconfigserver -file spring-config-server.crt -keystore spring-config-server.p12 -storepass <pass>
-    # keytool -exportcert -alias springconfigserver -storetype PKCS12 -keystore spring-config-server.p12 -file spring-config-server.cer -rfc -storepass <pass>
-    # keytool -import -alias vocabularyapi -file vocabulary-api.crt -keystore spring-config-server.p12 -storepass <pass>
-    # keytool -importkeystore -srckeystore spring-config-server.p12 -srcstoretype pkcs12 -srcalias springconfigserver -srcstorepass <pass> -destkeystore spring-config-server.jks -deststoretype jks -deststorepass john123 -destalias springconfigserver
     enabled: true
     #client-auth: need
     key-alias: springconfigserver
